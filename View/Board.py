@@ -9,14 +9,22 @@ class Board:
     def draw(self,screen,signs): #signs - tuple(Sign ...)
         screen.blit(self.texture,self.coordinates)
         for player,sign in enumerate(signs,1):
-            for i in self.board.shape[0]:
-                for j in self.board.shape[1]:
-                    if(self.board[i][j] == player): #1 - sign for first player
-                        sign.draw(screen,((i+1)*self.LINE_WIDTH+i*self.FIELD_LENGTH,(j+1)*self.LINE_WIDTH+j*self.FIELD_LENGTH))
+            for i in range(0,len(self.boardArray)):
+                for j in range(0,len(self.boardArray[1])):
+                    if(self.boardArray[i][j] == player): #1 - sign for first player
+                        sign.draw(screen,((i+1)*self.LINE_WIDTH+i*self.FIELD_LENGTH+self.coordinates[0],(j+1)*self.LINE_WIDTH+j*self.FIELD_LENGTH+self.coordinates[1]))
     def getBoardArray(self):
         return self.boardArray
-    def
+    def getFieldCoordinates(self,eventCoordinates):
+        absCoord = (eventCoordinates[0]-self.coordinates[0],eventCoordinates[1]-self.coordinates[1])
+        for j in range(0,len(self.boardArray)):
+            for i in range(0,len(self.boardArray[1])):
+                xi = (i+1)*self.LINE_WIDTH+i*self.FIELD_LENGTH
+                xi2= xi + self.FIELD_LENGTH
+                xj = (j+1)*self.LINE_WIDTH+j*self.FIELD_LENGTH
+                xj2 = xj + self.FIELD_LENGTH
+                if(absCoord[0]>xi and absCoord[0]<xi2 and absCoord[1]>xj and absCoord[1] <xj2):
+                    print("CCCCCOOOORD->",(i,j))
+                    return (i,j)
 
-kr = (1,2,312,4)
-for iz,x in enumerate(kr,1):
-    print(iz,' ',x)
+        return (-1,-1)

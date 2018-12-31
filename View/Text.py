@@ -6,7 +6,9 @@ class Text:
     def draw(self,screen ,coordinates):
         screen.blit(self.text,coordinates)
     def getLength(self):
-        return self.text.get_rect().width();
+        return self.text.get_rect().width
+    def getHeigth(self):
+        return self.text.get_rect().height
 
 
 
