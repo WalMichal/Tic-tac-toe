@@ -11,21 +11,13 @@ class GameController:
         #0 - first screen
         #1 - second screen
         #self.ednView = ev.EndView()
+        self.window = w.Window()
+        self.lastStatusInfo = -1
         while True:
-            self.startView = v.StartView(self.gameModel.getBoard(),
-                                         'C:/Users/Drewno/Desktop/IO/IO-Spec/grafika/board-texture.png', (
-                                         'C:/Users/Drewno/Desktop/IO/IO-Spec/grafika/nought.png',
-                                         'C:/Users/Drewno/Desktop/IO/IO-Spec/grafika/cross.png'))
-
-            while not(self.gameModel.getResult()):
-                self.startView.updatePlayerTurn(self.gameModel.ifFirstPlayerTurn())
-                self.startView.draw()
-                self.events()
-            self.statusInfo = 1
-            self.endView = ev.EndView(self.gameModel.getResult())
-            while self.statusInfo == 1:
-                self.endView.draw()
-                self.events()
+            self.changeStatus()
+            self.window.update(self.gameModel.ifFirstPlayerTurn())
+            self.window.draw()
+            self.events()
 
     def events(self):
         for event in pygame.event.get():
@@ -36,12 +28,23 @@ class GameController:
                 print(mouseCoord)
                 if not(self.statusInfo):
                     self.gameModel.insertSign(self.startView.getFieldCoordinates(mouseCoord))
+                    if(self.gameModel.getResult() != 0):
+                        self.statusInfo = 1
                 else:
                     if self.endView.getOption(mouseCoord)== 2:
                         exit()
                     if self.endView.getOption(mouseCoord) == 1:
                         self.gameModel.init()
                         self.statusInfo = 0
+    def changeStatus(self):
+        if(self.lastStatusInfo != self.statusInfo):
+            if(self.statusInfo == 0):
+                self.window = v.StartView(self.gameModel.getBoard(),
+                                          'C:/Users/Drewno/Desktop/IO/IO-Spec/grafika/board-texture.png', (
+                                              'C:/Users/Drewno/Desktop/IO/IO-Spec/grafika/nought.png',
+                                              'C:/Users/Drewno/Desktop/IO/IO-Spec/grafika/cross.png'))
+            else:
+                self.window = ev.EndView()
 
 
 GameController()

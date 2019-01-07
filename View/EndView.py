@@ -3,27 +3,17 @@ from View import Text as t
 import GLOBAL_DEFINE as g
 from View import Window as w
 class EndView(w.Window):
-    def __init__(self,gameResult):
+    def __init__(self):
         w.Window.__init__(self)
         self.FIGURE_WIDTH = 3
         self.REC_HEIGHT = 50
         self.REC_WIDTH = 300
         self.REC_ONCE_AGAIN_COORD = (150,250)
         self.REC_END_COORD = (150,310)
-        if gameResult == 1:
-            self.textResult = t.Text("Wygrał gracz pierwszy!",40,self.GREEN_COLOR)
-        else:
-            if gameResult == 2:
-                self.textResult = t.Text("Wygrał gracz drugi!",40,self.GREEN_COLOR)
-            else:
-                if gameResult == 3:
-                    self.textResult = t.Text("Remis",40,self.GREEN_COLOR)
-                else:
-                    self.textResult = t.Text("Koniec gry",40,self.GREEN_COLOR)
         self.textOnceAgain = t.Text("Zagraj jeszcze raz.",30,self.BLACK_COLOR)
         self.textEnd = t.Text("Zamknij.",30,self.BLACK_COLOR)
 
-        self.gameResult = gameResult
+        self.lastGameResult = 3
 
         self.recOnceAgain = pygame.Rect(self.REC_ONCE_AGAIN_COORD[0], self.REC_ONCE_AGAIN_COORD[1], self.REC_WIDTH, self.REC_HEIGHT)
         self.recEnd = pygame.Rect(self.REC_END_COORD[0], self.REC_END_COORD[1], self.REC_WIDTH, self.REC_HEIGHT)
@@ -52,7 +42,19 @@ class EndView(w.Window):
         if self.recOnceAgain.collidepoint(coordinates):
             return 1
         return 0
-
+    def update(self,gameResult):
+        if gameResult!= self.lastGameResult:
+            self.lastGameResult = gameResult
+            if gameResult == 1:
+                self.textResult = t.Text("Wygrał gracz pierwszy!",40,self.GREEN_COLOR)
+            else:
+                if gameResult == 2:
+                    self.textResult = t.Text("Wygrał gracz drugi!",40,self.GREEN_COLOR)
+                else:
+                    if gameResult == 3:
+                        self.textResult = t.Text("Remis",40,self.GREEN_COLOR)
+                    else:
+                        self.textResult = t.Text("Koniec gry",40,self.GREEN_COLOR)
 #a = EndView(3)
 #while True:
 #    a.draw()

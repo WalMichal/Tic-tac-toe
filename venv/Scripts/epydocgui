@@ -1,0 +1,7 @@
+#!C:\Users\Drewno\Desktop\IO\IO-exe\venv\Scripts\python.exe
+#
+# Call the graphical interface for Epydoc.
+#
+
+from epydoc.gui import gui
+gui()

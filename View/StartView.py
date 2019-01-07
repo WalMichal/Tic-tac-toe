@@ -30,23 +30,11 @@ class StartView(w.Window):
             self.textPlayer2.draw(self.screen, (self.RESOLUTION[1] / 2 - self.textSecondWidth/2, 80))
             self.textSign2.draw(self.screen, (self.RESOLUTION[1] / 2 + self.textPlayer2.getLength()/2, 80))
         pygame.display.flip()
+    def update(self,P1Turn):
+        self.P1Turn = P1Turn
     def getFieldCoordinates(self, coordinates):#?? wut
         return self.board.getFieldCoordinates(coordinates)
     def updatePlayerTurn(self,P1Turn):
         self.P1Turn = P1Turn
-class A():
-    def __init__(self):
-        self.zmienna = 10
-    def setZmienna(self,nowa):
-        self.zmienna = nowa
-    def print(self):
-        print(self.zmienna)
-class B():
-    def __init__(self,zmienna):
-        self.zmiennab = zmienna
-    def set(self,zmienna):
-        self.zmiennab = 8
-    def print(self):
-        print(self.zmiennab)
 
 

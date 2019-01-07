@@ -16,5 +16,7 @@ class Window:
     ###def draw(self,P1Turn):
     def draw(self):
         self.screen.fill(self.BACKGROUND_COLOR)
+    def update(self,param):
+        pass
 
 
