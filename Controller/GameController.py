@@ -4,9 +4,9 @@ from View import StartView as v
 from View import EndView as ev
 from View import Window as w
 class GameController:
-    def __init__(self,):
+    def __init__(self):
         self.gameModel = g.GameModel()
-        self.result = self.gameModel.getResult() #niepotrzebne :(
+        #self.result = self.gameModel.getResult() #niepotrzebne :(
         self.statusInfo = 0
         #0 - first screen
         #1 - second screen

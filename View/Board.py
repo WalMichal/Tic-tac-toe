@@ -4,7 +4,7 @@ class Board:
         self.LINE_WIDTH = 4
         self.FIELD_LENGTH = 95
         self.texture = pygame.image.load(path)
-        self.boardArray = boardArray
+        self.boardArray = boardArray #READ ONLY!
         self.coordinates = coordinates
     def draw(self,screen,signs): #signs - tuple(Sign ...)
         screen.blit(self.texture,self.coordinates)
@@ -13,8 +13,7 @@ class Board:
                 for j in range(0,len(self.boardArray[1])):
                     if(self.boardArray[i][j] == player): #1 - sign for first player
                         sign.draw(screen,((i+1)*self.LINE_WIDTH+i*self.FIELD_LENGTH+self.coordinates[0],(j+1)*self.LINE_WIDTH+j*self.FIELD_LENGTH+self.coordinates[1]))
-    def getBoardArray(self):
-        return self.boardArray
+
     def getFieldCoordinates(self,eventCoordinates):
         absCoord = (eventCoordinates[0]-self.coordinates[0],eventCoordinates[1]-self.coordinates[1])
         for j in range(0,len(self.boardArray)):

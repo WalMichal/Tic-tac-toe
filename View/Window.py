@@ -9,8 +9,8 @@ class Window:
         self.boardCoordinates = (150, 200)
         self.screen = pygame.display.set_mode(self.RESOLUTION)
         pygame.display.set_caption('Kółko i krzyżyk')
-        icon = pygame.image.load('E:/Pythonidae/venv/icon.png')
-        pygame.display.set_icon(icon)
+        self.icon = pygame.image.load('E:/Pythonidae/venv/icon.png')
+        pygame.display.set_icon(self.icon)
         #self.startView = sv.StartView(boardArray,boardPath,signsPaths)
         #self.EndView = ev.EndView()
     ###def draw(self,P1Turn):
