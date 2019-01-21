@@ -13,8 +13,8 @@ class StartView(w.Window):
         self.__text_sign1 = t.Text("O", 30, self.BLACK_COLOR)
         self.__text_player2 = t.Text("Ruch gracza drugiego:", 30, self.GREEN_COLOR)
         self.__text_sign2 = t.Text("X", 30, self.BLACK_COLOR)
-        self.__text_first_width = self.__text_player1.getLength() + self.__text_sign1.getLength()
-        self._text_second_width = self.__text_player2.getLength() + self.__text_sign2.getLength()
+        self.__text_first_width = self.__text_player1.get_length() + self.__text_sign1.get_length()
+        self._text_second_width = self.__text_player2.get_length() + self.__text_sign2.get_length()
         self._board_coordinates = (150, 200)
         self.__p1_turn = True
 
@@ -25,12 +25,12 @@ class StartView(w.Window):
     def draw(self):
         super(StartView, self).draw()
         self.__board.draw(self.screen, (self.__nought, self.__cross))
-        if (self.__p1_turn):
+        if self.__p1_turn:
             self.__text_player1.draw(self.screen, (self.RESOLUTION[1] / 2 - self.__text_first_width / 2, 80))
-            self.__text_sign1.draw(self.screen, (self.RESOLUTION[1] / 2 + self.__text_player1.getLength() / 2, 80))
+            self.__text_sign1.draw(self.screen, (self.RESOLUTION[1] / 2 + self.__text_player1.get_length() / 2, 80))
         else:
             self.__text_player2.draw(self.screen, (self.RESOLUTION[1] / 2 - self._text_second_width / 2, 80))
-            self.__text_sign2.draw(self.screen, (self.RESOLUTION[1] / 2 + self.__text_player2.getLength() / 2, 80))
+            self.__text_sign2.draw(self.screen, (self.RESOLUTION[1] / 2 + self.__text_player2.get_length() / 2, 80))
         pygame.display.flip()
 
     def get_field_coordinates(self, coordinates):

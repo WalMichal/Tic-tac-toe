@@ -2,34 +2,32 @@ import pygame
 from Model import GameModel as g
 from View import StartView as v
 from View import EndView as ev
-from View import Window as w
-from pathlib import Path
 import os.path
 
 
 class GameController:
     def __init__(self):
-        self.gameModel = g.GameModel()
-        self.statusInfo = 0
+        self.__game_model = g.GameModel()
+        self.__view_info = 0
         # 0 - startView screen
         # 1 - endView screen
         my_path = os.path.abspath(os.path.dirname(__file__))
         my_path = os.path.normpath(my_path).replace('\\', '/').replace("Controller", "View")
 
         while True:
-            self.startView = v.StartView(self.gameModel.getBoard(),
-                                         my_path + '/board-texture.png', (
+            self.__start_view = v.StartView(self.__game_model.getBoard(),
+                                            my_path + '/board-texture.png', (
                                              my_path + '/nought.png',
                                              my_path + '/cross.png'))
 
-            while not (self.gameModel.getResult()):
-                self.startView.update_player_turn(self.gameModel.ifFirstPlayerTurn())
-                self.startView.draw()
+            while not (self.__game_model.getResult()):
+                self.__start_view.update_player_turn(self.__game_model.ifFirstPlayerTurn())
+                self.__start_view.draw()
                 self.events()
-            self.statusInfo = 1
-            self.endView = ev.EndView(self.gameModel.getResult())
-            while self.statusInfo == 1:
-                self.endView.draw()
+            self.__view_info = 1
+            self.__end_view = ev.EndView(self.__game_model.getResult())
+            while self.__view_info == 1:
+                self.__end_view.draw()
                 self.events()
 
     def events(self):
@@ -37,16 +35,15 @@ class GameController:
             if event.type == pygame.QUIT:
                 exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
-                mouseCoord = pygame.mouse.get_pos()
-                print(mouseCoord)
-                if not (self.statusInfo):
-                    self.gameModel.insertSign(self.startView.get_field_coordinates(mouseCoord))
+                mouse_coord = pygame.mouse.get_pos()
+                if not self.__view_info:
+                    self.__game_model.insert_sign(self.__start_view.get_field_coordinates(mouse_coord))
                 else:
-                    if self.endView.getOption(mouseCoord) == 2:
+                    if self.__end_view.getOption(mouse_coord) == 2:
                         exit()
-                    if self.endView.getOption(mouseCoord) == 1:
-                        self.gameModel.init()
-                        self.statusInfo = 0
+                    if self.__end_view.getOption(mouse_coord) == 1:
+                        self.__game_model.init()
+                        self.__view_info = 0
 
 
 GameController()
