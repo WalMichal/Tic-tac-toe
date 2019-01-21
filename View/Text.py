@@ -3,14 +3,14 @@ import pygame
 
 class Text:
     def __init__(self, text, size, color):
-        self.font = pygame.font.SysFont("comicsansms", size, 1)
-        self.text = self.font.render(text, True, color)
+        self.__font = pygame.font.SysFont("comicsansms", size, 1)
+        self.__text = self.__font.render(text, True, color)
 
     def draw(self, screen, coordinates):
-        screen.blit(self.text, coordinates)
+        screen.blit(self.__text, coordinates)
 
     def getLength(self):
-        return self.text.get_rect().width
+        return self.__text.get_rect().width
 
     def getHeigth(self):
-        return self.text.get_rect().height
+        return self.__text.get_rect().height

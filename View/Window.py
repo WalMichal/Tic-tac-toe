@@ -1,5 +1,5 @@
 import pygame
-
+import os.path
 
 class Window:
     def __init__(self):
@@ -8,14 +8,14 @@ class Window:
         self.BACKGROUND_COLOR = (172, 122, 51)
         self.BLACK_COLOR = (0, 0, 0)
         self.GREEN_COLOR = (0, 128, 0)
-        self.boardCoordinates = (150, 200)
+
         self.screen = pygame.display.set_mode(self.RESOLUTION)
         pygame.display.set_caption('Kółko i krzyżyk')
-        self.icon = pygame.image.load('E:/Pythonidae/venv/icon.png')
-        pygame.display.set_icon(self.icon)
-        # self.startView = sv.StartView(boardArray,boardPath,signsPaths)
-        # self.EndView = ev.EndView()
+        my_path = os.path.abspath(os.path.dirname(__file__))
+        my_path = os.path.normpath(my_path).replace('\\', '/')
 
-    ###def draw(self,P1Turn):
+        self.icon = pygame.image.load(my_path+'/icon.png')
+        pygame.display.set_icon(self.icon)
+
     def draw(self):
         self.screen.fill(self.BACKGROUND_COLOR)

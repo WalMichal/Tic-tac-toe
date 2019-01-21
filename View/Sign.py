@@ -3,7 +3,7 @@ import pygame
 
 class Sign:
     def __init__(self, path):
-        self.texture = pygame.image.load(path)
+        self.__texture = pygame.image.load(path)
 
     def draw(self, screen, coordinates):
-        screen.blit(self.texture, coordinates)
+        screen.blit(self.__texture, coordinates)
