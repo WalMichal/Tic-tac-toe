@@ -43,14 +43,14 @@ class GameModel:
                 return True
         return False
 
-    def checkIfDraw(self):
+    def check_if_draw(self):
         for i in range(0, 3):
             if 0 in self.__board[i]:
                 return False
         if self.check_if_win() == False:
             return True
 
-    def getResult(self):
+    def get_result(self):
         # 0 - still playing
         # 1 - win player 1
         # 2 - win player 2
@@ -59,12 +59,12 @@ class GameModel:
             if self.__first_player_turn:
                 return 2
             return 1
-        if self.checkIfDraw():
+        if self.check_if_draw():
             return 3
         return 0
 
-    def ifFirstPlayerTurn(self):
+    def if_first_player_turn(self):
         return self.__first_player_turn
 
-    def getBoard(self):
+    def get_board(self):
         return self.__board

@@ -15,17 +15,17 @@ class GameController:
         my_path = os.path.normpath(my_path).replace('\\', '/').replace("Controller", "View")
 
         while True:
-            self.__start_view = v.StartView(self.__game_model.getBoard(),
+            self.__start_view = v.StartView(self.__game_model.get_board(),
                                             my_path + '/board-texture.png', (
                                              my_path + '/nought.png',
                                              my_path + '/cross.png'))
 
-            while not (self.__game_model.getResult()):
-                self.__start_view.update_player_turn(self.__game_model.ifFirstPlayerTurn())
+            while not (self.__game_model.get_result()):
+                self.__start_view.update_player_turn(self.__game_model.if_first_player_turn())
                 self.__start_view.draw()
                 self.events()
             self.__view_info = 1
-            self.__end_view = ev.EndView(self.__game_model.getResult())
+            self.__end_view = ev.EndView(self.__game_model.get_result())
             while self.__view_info == 1:
                 self.__end_view.draw()
                 self.events()
