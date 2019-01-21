@@ -1,6 +1,5 @@
 import pygame
 from View import Text as t
-import GLOBAL_DEFINE as g
 from View import Window as w
 
 
