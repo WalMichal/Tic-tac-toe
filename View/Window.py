@@ -1,4 +1,6 @@
 import pygame
+
+
 class Window:
     def __init__(self):
         pygame.init()
@@ -11,10 +13,9 @@ class Window:
         pygame.display.set_caption('Kółko i krzyżyk')
         self.icon = pygame.image.load('E:/Pythonidae/venv/icon.png')
         pygame.display.set_icon(self.icon)
-        #self.startView = sv.StartView(boardArray,boardPath,signsPaths)
-        #self.EndView = ev.EndView()
+        # self.startView = sv.StartView(boardArray,boardPath,signsPaths)
+        # self.EndView = ev.EndView()
+
     ###def draw(self,P1Turn):
     def draw(self):
         self.screen.fill(self.BACKGROUND_COLOR)
-
-
